@@ -1,4 +1,7 @@
 spring:
+  devtools:
+    livereload:
+      enabled: true
   redis:
     host: localhost
-    port: 15425
+    port: 6379
