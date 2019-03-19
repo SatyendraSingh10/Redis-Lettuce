@@ -34,34 +34,23 @@ public class RedisLettuceApplication implements CommandLineRunner {
     @Override
     @SneakyThrows
     public void run(String... args) {
-        /*log.info("test key value : " + stringRedisTemplate.opsForValue().get("test"));*/
-        /*log.info(stringRedisTemplate.hasKey("test1").toString());*/
+        
         /*insertIncrementalNotesByMessagesCount(50000);
         readNotesByMessagesCount(50000);*/
         /*insertingInMap(100000);*/
         long startTime = System.currentTimeMillis();
 
-       /* insertIncrementalNotesByMessagesCountByPipelining(0, 10000);
-        insertIncrementalNotesByMessagesCountByPipelining(10000, 20000);
-        insertIncrementalNotesByMessagesCountByPipelining(20000, 30000);
-        insertIncrementalNotesByMessagesCountByPipelining(30000, 40000);
-        insertIncrementalNotesByMessagesCountByPipelining(40000, 50000);
-        insertIncrementalNotesByMessagesCountByPipelining(50000, 60000);
-        insertIncrementalNotesByMessagesCountByPipelining(60000, 70000);
-        insertIncrementalNotesByMessagesCountByPipelining(70000, 80000);
-        insertIncrementalNotesByMessagesCountByPipelining(80000, 90000);
-        insertIncrementalNotesByMessagesCountByPipelining(90000, 100000);*/
-        insertIncrementalNotesByMessagesCountByPipelining(0, 100000);
-        readIncrementalNotesByMessagesCountByPipelining(0, 100000);
-        /*readIncrementalNotesByMessagesCountByPipelining(10000, 20000);
-        readIncrementalNotesByMessagesCountByPipelining(20000, 30000);
-        readIncrementalNotesByMessagesCountByPipelining(30000, 40000);
-        readIncrementalNotesByMessagesCountByPipelining(40000, 50000);
-        readIncrementalNotesByMessagesCountByPipelining(50000, 60000);
-        readIncrementalNotesByMessagesCountByPipelining(60000, 70000);
-        readIncrementalNotesByMessagesCountByPipelining(70000, 80000);
-        readIncrementalNotesByMessagesCountByPipelining(80000, 90000);
-        readIncrementalNotesByMessagesCountByPipelining(90000, 100000);*/
+        insertIncrementalNotesByMessagesCountByPipelining(0, 10000);
+        insertIncrementalNotesByMessagesCountByPipelining(10001, 20000);
+        insertIncrementalNotesByMessagesCountByPipelining(20001, 30000);
+        insertIncrementalNotesByMessagesCountByPipelining(30001, 40000);
+        insertIncrementalNotesByMessagesCountByPipelining(40001, 50000);
+       
+        readIncrementalNotesByMessagesCountByPipelining(0, 10000);
+        readIncrementalNotesByMessagesCountByPipelining(10001, 20000);
+        readIncrementalNotesByMessagesCountByPipelining(20001, 30000);
+        readIncrementalNotesByMessagesCountByPipelining(30001, 40000);
+        readIncrementalNotesByMessagesCountByPipelining(40001, 50000);
 
         long endTime = System.currentTimeMillis();
         long timeTaken = endTime - startTime;
@@ -88,7 +77,6 @@ public class RedisLettuceApplication implements CommandLineRunner {
     private void insertIncrementalNotesByMessagesCountByPipelining(int startCounter, int limit) {
         log.info("Inserting Messages using pipeline.");
         long startTime = System.currentTimeMillis();
-        /*List<Object> results = */
         stringRedisTemplate.executePipelined(
                 (RedisCallback<Object>) connection -> {
                     StringRedisConnection stringRedisConn = (StringRedisConnection) connection;
